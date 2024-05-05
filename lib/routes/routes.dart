@@ -15,8 +15,7 @@ class Routes {
       case productListing:
         return MaterialPageRoute(builder: (_) => ProductListingScreen());
       case productDetail:
-        final Product product = settings.arguments as Product;
-        return MaterialPageRoute(builder: (_) => ProductDetailScreen());
+        // return MaterialPageRoute(builder: (_) => ProductDetailScreen(product:,));
       case cart:
         return MaterialPageRoute(builder: (_) => CartScreen());
       case checkout:

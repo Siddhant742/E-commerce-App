@@ -4,35 +4,8 @@ import 'package:flutter/material.dart';
 import '../../routes/routes.dart';
 import '../product_detail/product_detail_screen.dart';
 import 'package:ecommerce_app/models/product.dart';
+import 'package:flutter/services.dart' as services;
 
-class Product {
-  final String id;
-  final String name;
-  final String category;
-  final String description;
-  final double price;
-  final String image;
-
-  Product({
-    required this.id,
-    required this.name,
-    required this.category,
-    required this.description,
-    required this.price,
-    required this.image,
-  });
-
-  factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(
-      id: json['id'],
-      name: json['name'],
-      category: json['category'],
-      description: json['description'],
-      price: json['price'].toDouble(),
-      image: json['image'],
-    );
-  }
-}
 
 class ProductListingScreen extends StatefulWidget {
   const ProductListingScreen({super.key});
@@ -43,36 +16,24 @@ class ProductListingScreen extends StatefulWidget {
 
 class _ProductListingScreenState extends State<ProductListingScreen> {
   List<Product> products = [];
+  Future<List<Product>> ReadJsonData() async {
+    final jsonData = await services.rootBundle.loadString(
+        'assets/productList.json');
+    final list = json.decode(jsonData) as List<dynamic>;
+    return list.map((e) => Product.fromJson(e)).toList();
+  }
+
+  Future<void> _loadData() async {
+    final List<Product> productList = await ReadJsonData();
+    setState(() {
+      products = productList;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    // Parse JSON data and initialize products list
-    String jsonStr = '''
-    {
-      "products": [
-        {
-          "id": "1",
-          "name": "Wireless Bluetooth Headphones",
-          "category": "Electronics",
-          "description": "High-quality wireless headphones with noise cancellation and 12-hour battery life.",
-          "price": 99.99,
-          "image": "https://example.com/images/product1.jpg"
-        },
-        {
-          "id": "2",
-          "name": "Organic Green Tea",
-          "category": "Groceries",
-          "description": "A soothing blend of organic green tea leaves from the mountains of Himachal.",
-          "price": 15.50,
-          "image": "https://example.com/images/product2.jpg"
-        }
-      ]
-    }
-    ''';
-    Map<String, dynamic> jsonData = json.decode(jsonStr);
-    List<dynamic> productsData = jsonData['products'];
-    products = productsData.map((data) => Product.fromJson(data)).toList();
+    _loadData();
   }
 
   @override
@@ -81,33 +42,45 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
       appBar: AppBar(
         title: Text('Product Listing'),
       ),
-      body: ListView.builder(
-        itemCount: products.length,
-        itemBuilder: (BuildContext context, int index) {
-          Product product = products[index];
-          return GestureDetector(
-            onTap: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProductDetailScreen(),
-                ),
-              );
-            },
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(product.image),
-              ),
-              title: Text(product.name),
-              subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
-              trailing: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, Routes.cart);
-                },
-                child: Text('Add to Cart'),
-              ),
-            ),
-          );
+      body: FutureBuilder(
+        future: ReadJsonData(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text("${snapshot.error}"));
+          } else {
+            return ListView.builder(
+              itemCount: products.length,
+              itemBuilder: (BuildContext context, int index) {
+                Product product = products[index];
+                return GestureDetector(
+                  onTap: () {
+                    // Handle onTap
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductDetailScreen(product: product),
+                      ),
+                    );
+                  },
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(product.image),
+                    ),
+                    title: Text(product.name),
+                    subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
+                    trailing: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.cart);
+                      },
+                      child: Text('Add to Cart'),
+                    ),
+                  ),
+                );
+              },
+            );
+          }
         },
       ),
     );

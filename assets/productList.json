@@ -1,0 +1,83 @@
+[
+    {
+      "id": "1",
+      "name": "Wireless Bluetooth Headphones",
+      "category": "Electronics",
+      "description": "High-quality wireless headphones with noise cancellation and 12-hour battery life.",
+      "price": 99.99,
+      "image": "https://example.com/images/product1.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Organic Green Tea",
+      "category": "Groceries",
+      "description": "A soothing blend of organic green tea leaves from the mountains of Himachal.",
+      "price": 15.50,
+      "image": "https://example.com/images/product2.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Ergonomic Office Chair",
+      "category": "Furniture",
+      "description": "Comfortable ergonomic office chair with lumbar support and breathable mesh back.",
+      "price": 250.00,
+      "image": "https://example.com/images/product3.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Classic Wooden Rolling Pin",
+      "category": "Kitchenware",
+      "description": "Traditional wooden rolling pin ideal for baking and pasta making.",
+      "price": 20.75,
+      "image": "https://example.com/images/product4.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Gaming Mouse",
+      "category": "Electronics",
+      "description": "High precision gaming mouse with customizable RGB lighting and 16000 DPI sensor.",
+      "price": 59.99,
+      "image": "https://example.com/images/product5.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Yoga Mat",
+
+      "category": "Fitness",
+      "description": "Eco-friendly, non-slip yoga mat perfect for all types of yoga and pilates.",
+      "price": 35.00,
+      "image": "https://example.com/images/product6.jpg"
+    },
+    {
+      "id": "7",
+      "name": "Stainless Steel Water Bottle",
+      "category": "Fitness",
+      "description": "Durable stainless steel water bottle, keeps liquids cold or hot for up to 12 hours.",
+      "price": 25.00,
+      "image": "https://example.com/images/product7.jpg"
+    },
+    {
+      "id": "8",
+      "name": "Smart TV 4K",
+      "category": "Electronics",
+      "description": "Ultra HD Smart TV with high dynamic range and smart home compatibility.",
+      "price": 1200.00,
+      "image": "https://example.com/images/product8.jpg"
+    },
+    {
+      "id": "9",
+      "name": "Bluetooth Speaker",
+      "category": "Electronics",
+      "description": "Portable Bluetooth speaker with excellent sound quality and long battery life.",
+      "price": 45.99,
+      "image": "https://example.com/images/product9.jpg"
+    },
+    {
+      "id": "10",
+      "name": "Electric Kettle",
+      "category": "Kitchenware",
+      "description": "Fast boiling electric kettle with auto shut-off and boil dry protection.",
+      "price": 29.99,
+      "image": "https://example.com/images/product10.jpg"
+    }
+  ]

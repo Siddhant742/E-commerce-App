@@ -18,7 +18,6 @@ class _NavBarScreenState extends State<NavBarScreen> {
   List screens = const [
     Scaffold(),
     ProductListingScreen(),
-    ProductDetailScreen(product: product),
     CartScreen(),
     CheckoutScreen()
   ];
