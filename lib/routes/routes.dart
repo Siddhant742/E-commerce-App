@@ -3,6 +3,7 @@ import 'package:ecommerce_app/features/product_listing/product_listing_screen.da
 import '../features/cart/cart_screen.dart';
 import '../features/checkout/checkout_screen.dart';
 import '../features/product_detail/product_detail_screen.dart';
+import '../models/product.dart';
 
 class Routes {
   static const String productListing = '/productListing';
@@ -15,9 +16,9 @@ class Routes {
       case productListing:
         return MaterialPageRoute(builder: (_) => ProductListingScreen());
       case productDetail:
-        // return MaterialPageRoute(builder: (_) => ProductDetailScreen(product:,));
+        return MaterialPageRoute(builder: (_) => ProductDetailScreen(product: settings.arguments as Product));
       case cart:
-        return MaterialPageRoute(builder: (_) => CartScreen());
+        return MaterialPageRoute(builder: (_) => CartScreen(cartProducts: [],));
       case checkout:
         return MaterialPageRoute(builder: (_) => CheckoutScreen());
       default:
