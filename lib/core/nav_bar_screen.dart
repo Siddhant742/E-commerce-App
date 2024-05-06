@@ -15,9 +15,10 @@ class NavBarScreen extends StatefulWidget {
 
 class _NavBarScreenState extends State<NavBarScreen> {
   int cuttentIndex = 1;
-  List screens = const [
+  List screens = [
     Scaffold(),
     ProductListingScreen(),
+    ProductDetailScreen(product: null),
     CartScreen(cartProducts: [],),
     CheckoutScreen()
   ];

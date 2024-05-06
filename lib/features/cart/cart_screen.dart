@@ -1,7 +1,6 @@
+import 'package:ecommerce_app/features/checkout/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/models/product.dart';
-
-import '../../routes/routes.dart';
 
 class CartScreen extends StatefulWidget {
   final List<Product> cartProducts;
@@ -69,7 +68,10 @@ class _CartScreenState extends State<CartScreen> {
               ElevatedButton(
                 onPressed: () {
                   // Proceed to checkout
-                  Navigator.pushNamed(context, Routes.checkout);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CheckoutScreen()));
                 },
                 child: Text('Checkout'),
               ),
@@ -88,4 +90,3 @@ class _CartScreenState extends State<CartScreen> {
     return total;
   }
 }
-
