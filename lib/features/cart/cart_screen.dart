@@ -29,7 +29,34 @@ class CartScreen extends StatelessWidget {
                   backgroundImage: NetworkImage(product.image),
                 ),
                 title: Text(product.name),
-                subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('\$${product.price.toStringAsFixed(2)}'),
+                    SizedBox(height: 5),
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.remove),
+                          onPressed: () {
+                            if (product.quantity > 1) {
+                              Provider.of<CartProvider>(context, listen: false)
+                                  .updateItemCount(product, product.quantity - 1);
+                            }
+                          },
+                        ),
+                        Text('${product.quantity}'),
+                        IconButton(
+                          icon: Icon(Icons.add),
+                          onPressed: () {
+                            Provider.of<CartProvider>(context, listen: false)
+                                .updateItemCount(product, product.quantity + 1);
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
                 trailing: IconButton(
                   icon: Icon(Icons.remove_circle),
                   onPressed: () {

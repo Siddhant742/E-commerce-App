@@ -6,7 +6,21 @@ class CartProvider extends ChangeNotifier {
   List<Product> get cartProducts => _cartProducts;
 
   void addToCart(Product product) {
-    _cartProducts.add(product);
+    // Check if the product is already in the cart
+    bool isInCart = _cartProducts.any((item) => item.id == product.id);
+
+    if (isInCart) {
+      // If the product is already in the cart, update its quantity
+      _cartProducts.forEach((item) {
+        if (item.id == product.id) {
+          item.quantity++;
+        }
+      });
+    } else {
+      // If the product is not in the cart, add it with quantity 1
+      product.quantity = 1;
+      _cartProducts.add(product);
+    }
     notifyListeners();
   }
 
@@ -23,8 +37,18 @@ class CartProvider extends ChangeNotifier {
   double getTotalPrice() {
     double totalPrice = 0;
     for (var product in _cartProducts) {
-      totalPrice += product.price;
+      totalPrice += product.price * product.quantity;
     }
     return totalPrice;
+  }
+
+  void updateItemCount(Product product, int newQuantity) {
+    // Update the quantity of the specified product
+    _cartProducts.forEach((item) {
+      if (item.id == product.id) {
+        item.quantity = newQuantity;
+      }
+    });
+    notifyListeners();
   }
 }
