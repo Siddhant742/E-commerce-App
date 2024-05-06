@@ -1,3 +1,3 @@
 import 'dart:ui';
 
-const Color kprimaryColor = Color(0x3E5C76);
+const Color kPrimaryColor = Color(0xac38154f);

@@ -1,47 +1,30 @@
+import 'package:flutter/material.dart';
 import 'package:ecommerce_app/features/cart/cart_screen.dart';
 import 'package:ecommerce_app/features/checkout/checkout_screen.dart';
 import 'package:ecommerce_app/features/product_detail/product_detail_screen.dart';
 import 'package:ecommerce_app/features/product_listing/product_listing_screen.dart';
 import 'package:ecommerce_app/core/constants.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class NavBarScreen extends StatefulWidget {
-  const NavBarScreen({super.key});
+  const NavBarScreen({Key? key}) : super(key: key);
 
   @override
   State<NavBarScreen> createState() => _NavBarScreenState();
 }
 
 class _NavBarScreenState extends State<NavBarScreen> {
-  int cuttentIndex = 1;
-  List screens = [
-    Scaffold(),
+  int currentIndex = 1;
+
+  List<Widget> screens = [
+    Scaffold(), // Placeholder for the first screen
     ProductListingScreen(),
-    ProductDetailScreen(product: null),
-    CartScreen(cartProducts: [],),
-    CheckoutScreen()
+    CartScreen(cartProducts: []),
+    CheckoutScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            cuttentIndex = 1;
-
-          });
-        },
-        shape: const CircleBorder(),
-        backgroundColor: kprimaryColor,
-        child: const Icon(
-          Icons.home,
-          color: Colors.white,
-          size: 35,
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         elevation: 1,
         height: 60,
@@ -56,25 +39,25 @@ class _NavBarScreenState extends State<NavBarScreen> {
             IconButton(
               onPressed: () {
                 setState(() {
-                  cuttentIndex = 0;
+                  currentIndex = 0;
                 });
               },
               icon: Icon(
-                Icons.grid_view_outlined,
+                Icons.home,
                 size: 30,
-                color: cuttentIndex == 0 ? kprimaryColor : Colors.grey.shade400,
+                color: currentIndex == 0 ? kPrimaryColor : Colors.grey.shade400,
               ),
             ),
             IconButton(
               onPressed: () {
                 setState(() {
-                  cuttentIndex = 1;
+                  currentIndex = 1;
                 });
               },
               icon: Icon(
-                Icons.favorite_border,
+                Icons.grid_view_rounded,
                 size: 30,
-                color: cuttentIndex == 1 ? kprimaryColor : Colors.grey.shade400,
+                color: currentIndex == 1 ? kPrimaryColor : Colors.grey.shade400,
               ),
             ),
             const SizedBox(
@@ -83,31 +66,31 @@ class _NavBarScreenState extends State<NavBarScreen> {
             IconButton(
               onPressed: () {
                 setState(() {
-                  cuttentIndex = 3;
+                  currentIndex = 2;
                 });
               },
               icon: Icon(
                 Icons.shopping_cart_outlined,
                 size: 30,
-                color: cuttentIndex == 3 ? kprimaryColor : Colors.grey.shade400,
+                color: currentIndex == 2 ? kPrimaryColor : Colors.grey.shade400,
               ),
             ),
             IconButton(
               onPressed: () {
                 setState(() {
-                  cuttentIndex = 4;
+                  currentIndex = 3;
                 });
               },
               icon: Icon(
                 Icons.person,
                 size: 30,
-                color: cuttentIndex == 4 ? kprimaryColor : Colors.grey.shade400,
+                color: currentIndex == 3 ? kPrimaryColor : Colors.grey.shade400,
               ),
             ),
           ],
         ),
       ),
-      body: screens[cuttentIndex],
+      body: screens[currentIndex],
     );
   }
 }
