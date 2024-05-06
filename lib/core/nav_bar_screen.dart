@@ -18,7 +18,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
   List<Widget> screens = [
     Scaffold(), // Placeholder for the first screen
     ProductListingScreen(),
-    CartScreen(cartProducts: []),
+    CartScreen(),
     CheckoutScreen(),
   ];
 
@@ -70,7 +70,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
                 });
               },
               icon: Icon(
-                Icons.shopping_cart_outlined,
+                Icons.shopping_cart,
                 size: 30,
                 color: currentIndex == 2 ? kPrimaryColor : Colors.grey.shade400,
               ),

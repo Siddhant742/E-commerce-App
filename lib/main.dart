@@ -1,5 +1,7 @@
+import 'package:ecommerce_app/core/provider/cartProvider.dart';
 import 'package:ecommerce_app/features/product_listing/product_listing_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'core/nav_bar_screen.dart';
 
 void main() {
@@ -12,7 +14,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ChangeNotifierProvider(create: (_) => CartProvider(),
+    child: MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
       ),
       home:NavBarScreen() ,
       debugShowCheckedModeBanner: false,
-    );
+    ));
   }
 }
 

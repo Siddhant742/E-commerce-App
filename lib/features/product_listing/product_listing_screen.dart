@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'package:ecommerce_app/core/provider/cartProvider.dart';
 import 'package:ecommerce_app/features/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 import '../product_detail/product_detail_screen.dart';
 import 'package:ecommerce_app/models/product.dart';
 import 'package:ecommerce_app/models/categories.dart';
 import 'package:flutter/services.dart' as services;
+import 'package:provider/provider.dart';
 
 class ProductListingScreen extends StatefulWidget {
   const ProductListingScreen({Key? key}) : super(key: key);
@@ -76,7 +78,8 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
                             subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
                             trailing: ElevatedButton(
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen(cartProducts: [])));
+                                Provider.of<CartProvider>(context, listen: false).addToCart(product);
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
                               },
                               child: Text('Add to Cart'),
                             ),
