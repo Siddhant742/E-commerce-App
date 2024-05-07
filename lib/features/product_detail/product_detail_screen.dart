@@ -1,4 +1,7 @@
+import 'package:ecommerce_app/core/provider/cartProvider.dart';
+import 'package:ecommerce_app/features/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../models/product.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -59,7 +62,8 @@ class ProductDetailScreen extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Add to cart functionality goes here
+                  Provider.of<CartProvider>(context).addToCart(product);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
                 },
                 child: Text('Add to Cart'),
               ),
