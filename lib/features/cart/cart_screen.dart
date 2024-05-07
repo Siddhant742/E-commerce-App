@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/features/checkout/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_app/core/provider/cartProvider.dart';
@@ -41,7 +42,8 @@ class CartScreen extends StatelessWidget {
                           onPressed: () {
                             if (product.quantity > 1) {
                               Provider.of<CartProvider>(context, listen: false)
-                                  .updateItemCount(product, product.quantity - 1);
+                                  .updateItemCount(
+                                      product, product.quantity - 1);
                             }
                           },
                         ),
@@ -76,11 +78,27 @@ class CartScreen extends StatelessWidget {
           return Container(
             height: 50,
             color: Colors.grey[300],
-            child: Center(
-              child: Text(
-                'Total Price: \$${totalPrice.toStringAsFixed(2)}',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 20),
+                  child: Text(
+                    'Total Price: \$${totalPrice.toStringAsFixed(2)}',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(right: 20),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Navigate to CheckoutScreen
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> CheckoutScreen()));
+                    },
+                    child: Text('Checkout'),
+                  ),
+                ),
+              ],
             ),
           );
         },
