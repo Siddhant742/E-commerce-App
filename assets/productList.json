@@ -1,11 +1,11 @@
 [
     {
       "id": "1",
-      "name": "Wireless Bluetooth Headphones",
+      "name": "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
+      "price": 64.12,
+      "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
       "category": "Electronics",
-      "description": "High-quality wireless headphones with noise cancellation and 12-hour battery life.",
-      "price": 99.99,
-      "image": "https://example.com/images/product1.jpg"
+      "image": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg"
     },
     {
       "id": "2",
@@ -13,7 +13,7 @@
       "category": "Groceries",
       "description": "A soothing blend of organic green tea leaves from the mountains of Himachal.",
       "price": 15.50,
-      "image": "https://example.com/images/product2.jpg"
+      "image":  "https://pixabay.com/photos/teacup-cup-of-tea-peppermint-tea-2325722/"
     },
     {
       "id": "3",
@@ -79,5 +79,13 @@
       "description": "Fast boiling electric kettle with auto shut-off and boil dry protection.",
       "price": 29.99,
       "image": "https://example.com/images/product10.jpg"
-    }
+    },
+  {
+    "id": "11",
+    "name": "Wireless Bluetooth Headphones",
+    "category": "Electronics",
+    "description": "High-quality wireless headphones with noise cancellation and 12-hour battery life.",
+    "price": 99.99,
+    "image": "https://example.com/images/product1.jpg"
+  }
   ]

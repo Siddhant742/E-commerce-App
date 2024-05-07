@@ -28,7 +28,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
       bottomNavigationBar: BottomAppBar(
         elevation: 1,
         height: 60,
-        color: Colors.white,
+        color: Color(0x1A5D5BFF),
         shape: const CircularNotchedRectangle(),
         notchMargin: 10,
         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -36,18 +36,18 @@ class _NavBarScreenState extends State<NavBarScreen> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  currentIndex = 0;
-                });
-              },
-              icon: Icon(
-                Icons.home,
-                size: 30,
-                color: currentIndex == 0 ? kPrimaryColor : Colors.grey.shade400,
-              ),
-            ),
+            // IconButton(
+            //   onPressed: () {
+            //     setState(() {
+            //       currentIndex = 0;
+            //     });
+            //   },
+            //   icon: Icon(
+            //     Icons.home,
+            //     size: 30,
+            //     color: currentIndex == 0 ? kPrimaryColor : Colors.grey.shade400,
+            //   ),
+            // ),
             IconButton(
               onPressed: () {
                 setState(() {
@@ -59,9 +59,6 @@ class _NavBarScreenState extends State<NavBarScreen> {
                 size: 30,
                 color: currentIndex == 1 ? kPrimaryColor : Colors.grey.shade400,
               ),
-            ),
-            const SizedBox(
-              width: 15,
             ),
             IconButton(
               onPressed: () {
@@ -82,7 +79,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
                 });
               },
               icon: Icon(
-                Icons.person,
+                Icons.shopping_cart_checkout,
                 size: 30,
                 color: currentIndex == 3 ? kPrimaryColor : Colors.grey.shade400,
               ),

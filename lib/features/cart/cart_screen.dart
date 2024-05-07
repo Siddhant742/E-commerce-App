@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constants.dart';
 import 'package:ecommerce_app/features/checkout/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,7 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Cart'),
       ),
+      backgroundColor: kBackgroundColor,
       body: Consumer<CartProvider>(
         builder: (context, cartProvider, child) {
           List<Product> cartProducts = cartProvider.cartProducts;
@@ -26,8 +28,19 @@ class CartScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               Product product = cartProducts[index];
               return ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(product.image),
+                tileColor: Colors.white,
+                leading: Container(
+                  height: 100,
+                  width: 90,
+                  decoration: BoxDecoration(
+                    // color: kContentColor,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  padding: const EdgeInsets.all(10),
+                  child: Image.network(
+                    product.image,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 title: Text(product.name),
                 subtitle: Column(
@@ -38,7 +51,10 @@ class CartScreen extends StatelessWidget {
                     Row(
                       children: [
                         IconButton(
-                          icon: Icon(Icons.remove),
+                          icon: Icon(
+                            Icons.remove,
+                            color: kPrimaryColor,
+                          ),
                           onPressed: () {
                             if (product.quantity > 1) {
                               Provider.of<CartProvider>(context, listen: false)
@@ -49,7 +65,10 @@ class CartScreen extends StatelessWidget {
                         ),
                         Text('${product.quantity}'),
                         IconButton(
-                          icon: Icon(Icons.add),
+                          icon: Icon(
+                            Icons.add,
+                            color: kPrimaryColor,
+                          ),
                           onPressed: () {
                             Provider.of<CartProvider>(context, listen: false)
                                 .updateItemCount(product, product.quantity + 1);
@@ -60,7 +79,10 @@ class CartScreen extends StatelessWidget {
                   ],
                 ),
                 trailing: IconButton(
-                  icon: Icon(Icons.remove_circle),
+                  icon: Icon(
+                    Icons.delete,
+                    color: kPrimaryColor,
+                  ),
                   onPressed: () {
                     // Remove the product from the cart
                     Provider.of<CartProvider>(context, listen: false)
@@ -93,7 +115,10 @@ class CartScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       // Navigate to CheckoutScreen
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> CheckoutScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CheckoutScreen()));
                     },
                     child: Text('Checkout'),
                   ),

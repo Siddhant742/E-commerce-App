@@ -62,7 +62,7 @@ class ProductDetailScreen extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  Provider.of<CartProvider>(context).addToCart(product);
+                  Provider.of<CartProvider>(context, listen: false).addToCart(product);
                   Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
                 },
                 child: Text('Add to Cart'),
