@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/features/checkout/widget/checkout_widget.dart';
+import 'package:ecommerce_app/features/checkout/widget/shipping_details_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_app/core/provider/cartProvider.dart';
@@ -22,14 +22,16 @@ class CheckoutScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Shipping Details',
-                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                   ),
                   // Shipping details form
                   ShippingDetailsForm(),
                   SizedBox(height: 20.0),
                   Text(
                     'Order Summary',
-                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                   ),
                   Consumer<CartProvider>(
                     builder: (context, cartProvider, child) {
@@ -55,7 +57,10 @@ class CheckoutScreen extends StatelessWidget {
                             ),
                             title: Text(product.name),
                             subtitle: Text('Quantity: ${product.quantity}'),
-                            trailing: Text('\$${product.price.toStringAsFixed(2)}'),
+                            trailing: Text(
+                              'Nrs ${product.price.toStringAsFixed(2)}',
+                              style: TextStyle(color: Colors.green),
+                            ),
                           );
                         },
                       );
@@ -76,8 +81,9 @@ class CheckoutScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Total Price: \$${totalPrice.toStringAsFixed(2)}',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      'Total Price: Nrs ${totalPrice.toStringAsFixed(2)}',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     ElevatedButton(
                       onPressed: () {

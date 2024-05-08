@@ -15,6 +15,7 @@ class ProductListingScreen extends StatefulWidget {
 class _ProductListingScreenState extends State<ProductListingScreen> {
   List<Product> products = [];
   int selectedIndex = 0;
+  TextEditingController searchController = TextEditingController();
 
   Future<List<Product>> readJsonData() async {
     final jsonData =
@@ -42,7 +43,9 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
     categoriesProducts.add(products);
     // Filter products by category
     for (var category in categoriesList) {
-      List<Product> categoryProducts = products.where((product) => product.category == category.title).toList();
+      List<Product> categoryProducts = products
+          .where((product) => product.category == category.title)
+          .toList();
       categoriesProducts.add(categoryProducts);
     }
     return categoriesProducts;
@@ -50,92 +53,99 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Product Listing'),
-      ),
-      body: Column(
-        children: [
-          categoryItems(),
-          Expanded(
-            child: FutureBuilder(
-              future: readJsonData(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  return Center(child: Text("${snapshot.error}"));
-                } else {
-                  return GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20,
-                      childAspectRatio: 0.75,
-                    ),
-                    itemCount: selectedIndex == 0 ? products.length : selectcategories()[selectedIndex + 1].length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ProductCard(
-                        product: selectedIndex == 0 ? products[index] : selectcategories()[selectedIndex + 1][index],
-                      );
-                    },
-                  );
-
-                }
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  SizedBox categoryItems() {
-    return SizedBox(
-      height: 130,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: categoriesList.length,
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              setState(() {
-                selectedIndex = index;
-              });
-            },
-            child: Container(
-              padding: const EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: selectedIndex == index ? Colors.blue[200] : Colors.transparent,
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    height: 65,
-                    width: 65,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Ecommerce App")
+        ),
+        body: Column(
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    margin: EdgeInsets.symmetric(horizontal: 1, vertical: 10),
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage(categoriesList[index].image),
-                        fit: BoxFit.cover,
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: TextField(
+                      controller: searchController,
+                      onChanged: null,
+                      decoration: InputDecoration(
+                        hintText: "search",
+                        // labelText: 'Search.....',
+                        contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                        border: InputBorder.none,
+                        prefixIcon: Icon(Icons.search),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                    categoriesList[index].title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                ),
+                SizedBox(width: 10), // Add spacing between search bar and dropdown menu
+                DropdownButton(
+                  value: selectedIndex,
+                  items: List.generate(
+                    categoriesList.length,
+                        (index) => DropdownMenuItem(
+                      child: Text(categoriesList[index].title),
+                      value: index,
                     ),
-                  )
-                ],
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedIndex = value as int;
+                    });
+                  },
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'Products',
+              style:
+              TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Expanded(
+              child: FutureBuilder(
+                future: readJsonData(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text("${snapshot.error}"));
+                  } else {
+                    return GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
+                        childAspectRatio: 0.75,
+                      ),
+                      itemCount: selectedIndex == 0
+                          ? products.length
+                          : selectcategories()[selectedIndex +1].length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ProductCard(
+                          product: selectedIndex == 0
+                              ? products[index]
+                              : selectcategories()[selectedIndex +1][index],
+                        );
+                      },
+                    );
+                  }
+                },
               ),
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
   }

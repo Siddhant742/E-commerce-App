@@ -16,7 +16,7 @@ class ShippingDetailsForm extends StatelessWidget {
           decoration: InputDecoration(labelText: 'City'),
         ),
         TextFormField(
-          decoration: InputDecoration(labelText: 'Postal Code'),
+          decoration: InputDecoration(labelText: 'Contact No.'),
         ),
       ],
     );

@@ -46,7 +46,10 @@ class CartScreen extends StatelessWidget {
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('\$${product.price.toStringAsFixed(2)}'),
+                    Text(
+                      'Nrs ${product.price.toStringAsFixed(2)}',
+                      style: TextStyle(color: Colors.green),
+                    ),
                     SizedBox(height: 5),
                     Row(
                       children: [
@@ -106,7 +109,7 @@ class CartScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 20),
                   child: Text(
-                    'Total Price: \$${totalPrice.toStringAsFixed(2)}',
+                    'Total Price: Nrs ${totalPrice.toStringAsFixed(2)}',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
