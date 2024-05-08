@@ -69,8 +69,9 @@ class CheckoutScreen extends StatelessWidget {
             builder: (context, cartProvider, child) {
               double totalPrice = cartProvider.getTotalPrice();
               return Container(
+                height: 50,
                 color: Colors.grey[300],
-                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                padding: EdgeInsets.only(left: 20.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

@@ -12,26 +12,26 @@ class Category {
 final List<Category> categoriesList = [
   Category(
     title: "All",
-    image: "images/all.png",
+    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
   ),
   Category(
     title: "Electronics",
-    image: "images/shoes.png",
+    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
   ),
   Category(
     title: "Groceries",
-    image: "images/beauty.png",
+    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
   ),
   Category(
     title: "Furniture",
-    image: "images/image1.png",
+    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
   ),
   Category(
     title: "Kitchenware",
-    image: "images/jewelry.png",
+    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
   ),
   Category(
     title: "Fitness",
-    image: "images/men.png",
+    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
   ),
 ];

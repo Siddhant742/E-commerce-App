@@ -1,12 +1,9 @@
 import 'dart:convert';
-import 'package:ecommerce_app/core/provider/cartProvider.dart';
-import 'package:ecommerce_app/features/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
-import '../product_detail/product_detail_screen.dart';
+import 'package:ecommerce_app/features/product_listing/widget/product_card.dart';
 import 'package:ecommerce_app/models/product.dart';
 import 'package:ecommerce_app/models/categories.dart';
 import 'package:flutter/services.dart' as services;
-import 'package:provider/provider.dart';
 
 class ProductListingScreen extends StatefulWidget {
   const ProductListingScreen({Key? key}) : super(key: key);
@@ -20,7 +17,8 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
   int selectedIndex = 0;
 
   Future<List<Product>> readJsonData() async {
-    final jsonData = await services.rootBundle.loadString('assets/productList.json');
+    final jsonData =
+    await services.rootBundle.loadString('assets/productList.json');
     final list = json.decode(jsonData) as List<dynamic>;
     return list.map((e) => Product.fromJson(e)).toList();
   }
@@ -36,6 +34,18 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
   void initState() {
     super.initState();
     _loadData();
+  }
+
+  List<List<Product>> selectcategories() {
+    List<List<Product>> categoriesProducts = [];
+    // All products
+    categoriesProducts.add(products);
+    // Filter products by category
+    for (var category in categoriesList) {
+      List<Product> categoryProducts = products.where((product) => product.category == category.title).toList();
+      categoriesProducts.add(categoryProducts);
+    }
+    return categoriesProducts;
   }
 
   @override
@@ -56,41 +66,21 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
                 } else if (snapshot.hasError) {
                   return Center(child: Text("${snapshot.error}"));
                 } else {
-                  return ListView.builder(
-                    itemCount: products.length,
+                  return GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
+                      childAspectRatio: 0.75,
+                    ),
+                    itemCount: selectedIndex == 0 ? products.length : selectcategories()[selectedIndex + 1].length,
                     itemBuilder: (BuildContext context, int index) {
-                      Product product = products[index];
-                      if (selectedIndex == 0 || product.category == categoriesList[selectedIndex].title) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ProductDetailScreen(product: product),
-                              ),
-                            );
-                          },
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(product.image),
-                            ),
-                            title: Text(product.name),
-                            subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
-                            trailing: ElevatedButton(
-                              onPressed: () {
-                                Provider.of<CartProvider>(context, listen: false).addToCart(product);
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
-                              },
-                              child: Text('Add to Cart'),
-                            ),
-                          ),
-                        );
-                      } else {
-                        // Return an empty container if the product doesn't belong to the selected category
-                        return Container();
-                      }
+                      return ProductCard(
+                        product: selectedIndex == 0 ? products[index] : selectcategories()[selectedIndex + 1][index],
+                      );
                     },
                   );
+
                 }
               },
             ),
