@@ -22,6 +22,7 @@ class ProductCard extends StatelessWidget {
                 builder: (context) => ProductDetailScreen(product: product)));
       },
       child: Card(
+        // margin: EdgeInsets.all(5),
         elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
