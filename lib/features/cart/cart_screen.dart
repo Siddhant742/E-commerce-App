@@ -64,7 +64,7 @@ class CartScreen extends StatelessWidget {
                             if (product.quantity > 1) {
                               Provider.of<CartProvider>(context, listen: false)
                                   .updateItemCount(
-                                      product, product.quantity - 1);
+                                  product, product.quantity - 1);
                             }
                           },
                         ),
