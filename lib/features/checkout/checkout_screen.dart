@@ -59,7 +59,7 @@ class CheckoutScreen extends StatelessWidget {
                             subtitle: Text('Quantity: ${product.quantity}'),
                             trailing: Text(
                               'Nrs ${product.price.toStringAsFixed(2)}',
-                              style: TextStyle(color: Colors.green),
+                              style: TextStyle(color: Colors.blue),
                             ),
                           );
                         },
@@ -86,6 +86,10 @@ class CheckoutScreen extends StatelessWidget {
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Theme.of(context).primaryColor,
+                        onPrimary: Colors.white,
+                      ),
                       onPressed: () {
                         // Place Order button action
                         showDialog(

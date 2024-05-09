@@ -28,7 +28,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
       bottomNavigationBar: BottomAppBar(
         elevation: 1,
         height: 60,
-        color: Color(0x1A5D5BFF),
+        color: Color(0xFF6747B6),
         shape: const CircularNotchedRectangle(),
         notchMargin: 10,
         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -45,7 +45,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
             //   icon: Icon(
             //     Icons.home,
             //     size: 30,
-            //     color: currentIndex == 0 ? kPrimaryColor : Colors.grey.shade400,
+            //     color: currentIndex == 0 ? Colors.white : kPrimaryColor,
             //   ),
             // ),
             IconButton(
@@ -57,7 +57,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
               icon: Icon(
                 Icons.grid_view_rounded,
                 size: 30,
-                color: currentIndex == 1 ? kPrimaryColor : Colors.grey.shade400,
+                color: currentIndex == 1 ? Colors.white : kPrimaryColor,
               ),
             ),
             IconButton(
@@ -69,7 +69,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
               icon: Icon(
                 Icons.shopping_cart,
                 size: 30,
-                color: currentIndex == 2 ? kPrimaryColor : Colors.grey.shade400,
+                color: currentIndex == 2 ? Colors.white : kPrimaryColor,
               ),
             ),
             IconButton(
@@ -81,7 +81,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
               icon: Icon(
                 Icons.shopping_cart_checkout,
                 size: 30,
-                color: currentIndex == 3 ? kPrimaryColor : Colors.grey.shade400,
+                color: currentIndex == 3 ? Colors.white : kPrimaryColor,
               ),
             ),
           ],

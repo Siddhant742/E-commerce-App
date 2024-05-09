@@ -61,57 +61,58 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: Text("Ecommerce App"),
+              title: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 50,
+                      margin:
+                      EdgeInsets.symmetric(horizontal: 1, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: TextField(
+                        controller: searchController,
+                        onChanged: (text) => _loadData(),
+                        decoration: InputDecoration(
+                          hintText: "search",
+                          // labelText: 'Search.....',
+                          contentPadding:
+                          EdgeInsets.symmetric(horizontal: 20),
+                          border: InputBorder.none,
+                          prefixIcon: Icon(Icons.search),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                      width:
+                      10),
+                  DropdownButton(
+                    value: selectedIndex,
+                    items: List.generate(
+                      categoriesList.length,
+                          (index) => DropdownMenuItem(
+                        child: Text(categoriesList[index].title),
+                        value: index,
+                      ),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedIndex = value as int;
+                        _loadData(); // Update products based on category
+                      });
+                    },
+                  ),
+                ],
+              ),
+
             ),
             body: Column(
               // crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 50,
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 1, vertical: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        child: TextField(
-                          controller: searchController,
-                          onChanged: (text) => _loadData(),
-                          decoration: InputDecoration(
-                            hintText: "search",
-                            // labelText: 'Search.....',
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 20),
-                            border: InputBorder.none,
-                            prefixIcon: Icon(Icons.search),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                        width:
-                            10),
-                    DropdownButton(
-                      value: selectedIndex,
-                      items: List.generate(
-                        categoriesList.length,
-                        (index) => DropdownMenuItem(
-                          child: Text(categoriesList[index].title),
-                          value: index,
-                        ),
-                      ),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedIndex = value as int;
-                          _loadData(); // Update products based on category
-                        });
-                      },
-                    ),
-                  ],
-                ),
+
                 SizedBox(
                   height: 10,
                 ),

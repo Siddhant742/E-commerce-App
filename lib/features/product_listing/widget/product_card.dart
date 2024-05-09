@@ -57,7 +57,7 @@ class ProductCard extends StatelessWidget {
                   SizedBox(height: 4),
                   Text(
                     'Nrs ${product.price.toStringAsFixed(2)}',
-                    style: TextStyle(color: Colors.green),
+                    style: TextStyle(color: Colors.blue),
                   ),
                   SizedBox(height: 8),
                   ElevatedButton(

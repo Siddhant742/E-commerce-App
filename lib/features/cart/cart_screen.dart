@@ -40,6 +40,8 @@ class CartScreen extends StatelessWidget {
                   child: Image.network(
                     product.image,
                     fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) =>
+                        Center(child: Icon(Icons.error)),
                   ),
                 ),
                 title: Text(product.name),
@@ -48,7 +50,7 @@ class CartScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Nrs ${product.price.toStringAsFixed(2)}',
-                      style: TextStyle(color: Colors.green),
+                      style: TextStyle(color: Colors.blue),
                     ),
                     SizedBox(height: 5),
                     Row(
@@ -123,6 +125,10 @@ class CartScreen extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => CheckoutScreen()));
                     },
+                    style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).primaryColor,
+                      onPrimary: Colors.white,
+                    ),
                     child: Text('Checkout'),
                   ),
                 ),

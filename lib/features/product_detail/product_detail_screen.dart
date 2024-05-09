@@ -77,6 +77,10 @@ class ProductDetailScreen extends StatelessWidget {
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Theme.of(context).primaryColor,
+            onPrimary: Colors.white,
+          ),
           onPressed: () {
             Provider.of<CartProvider>(context, listen: false).addToCart(product);
             Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
