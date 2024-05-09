@@ -4,7 +4,15 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This is an Ecommerce Flutter application.
+
+To get it running on your device on Android Studio or VS Code, follow these simple steps:
+i) Clone this project running the command:
+    - git clone https://github.com/Siddhant742/E-commerce-App.git
+ii) Get the dependencies used in this project running the command:
+    - flutter pub get
+iii) Now run the project.
+
 
 A few resources to get you started if this is your first Flutter project:
 
