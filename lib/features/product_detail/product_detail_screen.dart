@@ -29,6 +29,8 @@ class ProductDetailScreen extends StatelessWidget {
                         child: Image.network(
                           product.image,
                           height: 200,
+                          errorBuilder: (context, error, stackTrace) =>
+                              Center(child: Icon(Icons.error)),
                         ),
                       ),
                       SizedBox(height: 16),

@@ -34,9 +34,12 @@ class ProductCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
                 child: Image.network(
+                  // 'https://photos.app.goo.gl/eZsn6ctTmEBYSAqk8',
                   product.image,
                   height: 30,
                   width: 30,
+                  errorBuilder: (context, error, stackTrace) =>
+                      Center(child: Icon(Icons.error)),
                 ),
               ),
             ),

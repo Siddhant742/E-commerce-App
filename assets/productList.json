@@ -13,7 +13,7 @@
       "category": "Groceries",
       "description": "A soothing blend of organic green tea leaves from the mountains of Himachal.",
       "price": 15.50,
-      "image":  "https://pixabay.com/photos/teacup-cup-of-tea-peppermint-tea-2325722/"
+      "image":  "https://static-01.daraz.com.np/p/194c67fb99f49b9d8b7f402dd057d68b.jpg"
     },
     {
       "id": "3",
@@ -21,7 +21,7 @@
       "category": "Furniture",
       "description": "Comfortable ergonomic office chair with lumbar support and breathable mesh back.",
       "price": 250.00,
-      "image": "https://example.com/images/product3.jpg"
+      "image": "https://i0.wp.com/www.avinyastore.com/wp-content/uploads/2023/09/1.png?fit=1080%2C1080&ssl=1"
     },
     {
       "id": "4",
@@ -29,7 +29,7 @@
       "category": "Kitchenware",
       "description": "Traditional wooden rolling pin ideal for baking and pasta making.",
       "price": 20.75,
-      "image": "https://example.com/images/product4.jpg"
+      "image": "https://images-cdn.ubuy.co.in/63740133508e6a53ed7ed7e7-tera-classic-wood-rolling-pin-rubber.jpg"
     },
     {
       "id": "5",
@@ -37,7 +37,7 @@
       "category": "Electronics",
       "description": "High precision gaming mouse with customizable RGB lighting and 16000 DPI sensor.",
       "price": 59.99,
-      "image": "https://example.com/images/product5.jpg"
+      "image": "https://i5.walmartimages.com/asr/8c2707d9-286f-440f-8a7f-8639ccb6e247_1.6e24c983626322e82e3fb15f4ed7e13a.jpeg"
     },
     {
       "id": "6",
@@ -46,7 +46,7 @@
       "category": "Fitness",
       "description": "Eco-friendly, non-slip yoga mat perfect for all types of yoga and pilates.",
       "price": 35.00,
-      "image": "https://example.com/images/product6.jpg"
+      "image": "https://m.media-amazon.com/images/I/81a9mSKpkvL._AC_UF1000,1000_QL80_.jpg"
     },
     {
       "id": "7",
@@ -54,7 +54,7 @@
       "category": "Fitness",
       "description": "Durable stainless steel water bottle, keeps liquids cold or hot for up to 12 hours.",
       "price": 25.00,
-      "image": "https://example.com/images/product7.jpg"
+      "image": "https://m.media-amazon.com/images/I/5175L8G90xL._AC_UF1000,1000_QL80_.jpg"
     },
     {
       "id": "8",
@@ -62,7 +62,7 @@
       "category": "Electronics",
       "description": "Ultra HD Smart TV with high dynamic range and smart home compatibility.",
       "price": 1200.00,
-      "image": "https://example.com/images/product8.jpg"
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnC3e39ULVu9DSQvnGKSjtDffZaqTLqaO_tsU-DUG1iQ&s"
     },
     {
       "id": "9",
@@ -70,7 +70,7 @@
       "category": "Electronics",
       "description": "Portable Bluetooth speaker with excellent sound quality and long battery life.",
       "price": 45.99,
-      "image": "https://example.com/images/product9.jpg"
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6T8UUYUxtiPAPvGrEwRDnilJh7SNubDg6ZwvAIIUjjw&s"
     },
     {
       "id": "10",
@@ -78,7 +78,7 @@
       "category": "Kitchenware",
       "description": "Fast boiling electric kettle with auto shut-off and boil dry protection.",
       "price": 29.99,
-      "image": "https://example.com/images/product10.jpg"
+      "image": "https://images-cdn.ubuy.co.in/652419158e21a967ec6c20ed-ovente-electric-kettle-hot-water-heater.jpg"
     },
   {
     "id": "11",
@@ -86,6 +86,6 @@
     "category": "Electronics",
     "description": "High-quality wireless headphones with noise cancellation and 12-hour battery life.",
     "price": 99.99,
-    "image": "https://example.com/images/product1.jpg"
+    "image": "https://m.media-amazon.com/images/I/71RcvaLndCL._AC_UF894,1000_QL80_.jpg"
   }
   ]
