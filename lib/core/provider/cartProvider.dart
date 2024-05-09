@@ -1,9 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/models/product.dart';
+import 'package:hive/hive.dart';
+
+const String cartBoxName = 'cartProducts';
 
 class CartProvider extends ChangeNotifier {
   List<Product> _cartProducts = [];
+
   List<Product> get cartProducts => _cartProducts;
+
+  CartProvider() {
+    _loadCartFromHive(); // Load cart data on initialization
+  }
+
+  Future<void> _saveCartToHive() async {
+    try {
+      final box = await Hive.box<Product>(cartBoxName);
+      for (var product in _cartProducts) {
+        await box.put(product.id, product); // Save each product individually with its id as the key
+      }
+    } catch (e) {
+      print('Error saving cart data: $e');
+    }
+  }
+
+
+  Future<void> _loadCartFromHive() async {
+    try {
+      final box = await Hive.box<Product>(cartBoxName);
+      _cartProducts = box.values.toList(); // Load values and convert to list
+      notifyListeners();
+    } catch (e) {
+      print('Error loading cart data: $e');
+    }
+  }
 
   void addToCart(Product product) {
     // Check if the product is already in the cart
@@ -21,25 +51,28 @@ class CartProvider extends ChangeNotifier {
       product.quantity = 1;
       _cartProducts.add(product);
     }
+    _saveCartToHive();
     notifyListeners();
   }
 
   void removeFromCart(Product product) {
     _cartProducts.remove(product);
+    _saveCartToHive();
     notifyListeners();
   }
 
   void clearCart() {
     _cartProducts.clear();
+    _saveCartToHive();
     notifyListeners();
   }
 
   double getTotalPrice() {
-    double totalPrice = 0;
-    for (var product in _cartProducts) {
-      totalPrice += product.price * product.quantity;
-    }
-    return totalPrice;
+    return _cartProducts.fold<double>(
+      0,
+          (previousValue, element) =>
+      previousValue + element.price * element.quantity,
+    );
   }
 
   void updateItemCount(Product product, int newQuantity) {
@@ -49,6 +82,7 @@ class CartProvider extends ChangeNotifier {
         item.quantity = newQuantity;
       }
     });
+    _saveCartToHive();
     notifyListeners();
   }
 }

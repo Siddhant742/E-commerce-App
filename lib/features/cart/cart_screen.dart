@@ -1,9 +1,8 @@
-import 'package:ecommerce_app/core/constants.dart';
-import 'package:ecommerce_app/features/checkout/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_app/core/provider/cartProvider.dart';
 import 'package:ecommerce_app/models/product.dart';
+import '../checkout/checkout_screen.dart';
 
 class CartScreen extends StatelessWidget {
   @override
@@ -12,9 +11,8 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Cart'),
       ),
-      backgroundColor: kBackgroundColor,
       body: Consumer<CartProvider>(
-        builder: (context, cartProvider, child) {
+        builder: (context, cartProvider, _) {
           List<Product> cartProducts = cartProvider.cartProducts;
 
           if (cartProducts.isEmpty) {
@@ -33,7 +31,6 @@ class CartScreen extends StatelessWidget {
                   height: 100,
                   width: 90,
                   decoration: BoxDecoration(
-                    // color: kContentColor,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   padding: const EdgeInsets.all(10),
@@ -58,12 +55,11 @@ class CartScreen extends StatelessWidget {
                         IconButton(
                           icon: Icon(
                             Icons.remove,
-                            color: kPrimaryColor,
+                            color: Theme.of(context).primaryColor,
                           ),
                           onPressed: () {
                             if (product.quantity > 1) {
-                              Provider.of<CartProvider>(context, listen: false)
-                                  .updateItemCount(
+                              cartProvider.updateItemCount(
                                   product, product.quantity - 1);
                             }
                           },
@@ -72,11 +68,11 @@ class CartScreen extends StatelessWidget {
                         IconButton(
                           icon: Icon(
                             Icons.add,
-                            color: kPrimaryColor,
+                            color: Theme.of(context).primaryColor,
                           ),
                           onPressed: () {
-                            Provider.of<CartProvider>(context, listen: false)
-                                .updateItemCount(product, product.quantity + 1);
+                            cartProvider.updateItemCount(
+                                product, product.quantity + 1);
                           },
                         ),
                       ],
@@ -86,12 +82,10 @@ class CartScreen extends StatelessWidget {
                 trailing: IconButton(
                   icon: Icon(
                     Icons.delete,
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                   ),
                   onPressed: () {
-                    // Remove the product from the cart
-                    Provider.of<CartProvider>(context, listen: false)
-                        .removeFromCart(product);
+                    cartProvider.removeFromCart(product);
                   },
                 ),
               );
@@ -100,7 +94,7 @@ class CartScreen extends StatelessWidget {
         },
       ),
       bottomNavigationBar: Consumer<CartProvider>(
-        builder: (context, cartProvider, child) {
+        builder: (context, cartProvider, _) {
           double totalPrice = cartProvider.getTotalPrice();
           return Container(
             height: 50,
@@ -112,18 +106,22 @@ class CartScreen extends StatelessWidget {
                   padding: EdgeInsets.only(left: 20),
                   child: Text(
                     'Total Price: Nrs ${totalPrice.toStringAsFixed(2)}',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 20),
                   child: ElevatedButton(
                     onPressed: () {
-                      // Navigate to CheckoutScreen
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CheckoutScreen()));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CheckoutScreen(),
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Theme.of(context).primaryColor,
