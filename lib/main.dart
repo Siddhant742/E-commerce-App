@@ -12,7 +12,8 @@ void main() async {
   final appDocumentDirectory =
   await path_provider.getApplicationDocumentsDirectory();
   Hive.init(appDocumentDirectory.path);
-  await Hive.initFlutter();
+  // await Hive.initFlutter();
+  Hive.registerAdapter(ProductAdapter());
   await Hive.openBox<Product>('cartProducts');
   runApp(MyApp());
 }
